@@ -1,0 +1,40 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="StudentSQL">
+    <insert id="insert" parameterType="Student">
+        insert into STUDENT values (#{ID},#{name},#{gender}, #{mobile})
+    </insert>
+
+    <resultMap id="result" type="Student" autoMapping="true">
+
+    </resultMap>
+
+<!--   same name of column and data member of pojo- Mapping automatic by attribute-->
+
+<!--    <resultMap id="result" type="Student" >-->
+<!--        <result property="ID" column="ID"/>-->
+<!--        <result property="name" column="name"/>-->
+<!--        <result property="gender" column="gender"/>-->
+<!--        <result property="mobile" column="mobileNo"/>-->
+<!--        -->
+<!--    </resultMap>-->
+
+<!--    <resultMap id="resultList" type="java.util.List">-->
+<!--        <result property="Student" />-->
+
+
+<!--    </resultMap>-->
+    <select id="select" resultMap="result" parameterType="java.lang.String" >
+        select  * from Student where ID=#{ID}
+    </select>
+    <select id="selectAll" resultMap="result" >
+        select  * from Student
+    </select>
+    <update id="updateStudent" parameterType="Student">
+        update student set mobile=#{mobile}  where ID=#{ID}
+    </update>
+    <delete id="deleteStudent" parameterType="java.lang.String">
+        delete  from Student where ID=#{ID}
+    </delete>
+</mapper>
